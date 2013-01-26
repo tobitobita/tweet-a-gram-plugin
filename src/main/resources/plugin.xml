@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+   <extension point="com.change_vision.astah.ui.actionSets">
+      <actionSet
+            label="%action_set_label"
+            visible="true"
+            id="dsk.Tweet-a-gram-plugin.actionSet">
+         <menu
+               id="Tweet-a-gram-plugin"
+               label="%menu_group"
+               path="tool/Tweet-a-gram-plugin">
+         </menu>
+         <action
+			   label="%menu_label"
+               icon="icons/sample.gif"
+               class="dsk.tweet_a_gram.plugin.action.TweetTwitterAction"
+               tooltip="%menu_tooltip"
+               menubarPath="tool/Tweet-a-gram-plugin/"
+               id="Tweet-a-gram-plugin-1">
+         </action>
+         <action
+			   label="%menu_label_logout"
+               icon="icons/sample.gif"
+               class="dsk.tweet_a_gram.plugin.action.LogoutAction"
+               tooltip="%menu_tooltip_logout"
+               menubarPath="tool/Tweet-a-gram-plugin/Tweet-a-gram-plugin-1"
+               id="Tweet-a-gram-plugin-2">
+         </action>
+     </actionSet>
+   </extension>
+</plugin>
