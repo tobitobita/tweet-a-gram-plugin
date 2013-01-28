@@ -1,4 +1,4 @@
-package dsk.tweet_a_gram.plugin.action;
+package dsk.tweet_a_gram.plugin.action.facebook;
 
 import javax.swing.JOptionPane;
 
@@ -17,7 +17,7 @@ import com.google.inject.TypeLiteral;
 
 import dsk.common.util.R;
 import dsk.tweet_a_gram.core.service.TweetService;
-import dsk.tweet_a_gram.plugin.modules.CoreModule;
+import dsk.tweet_a_gram.plugin.modules.TwitterModule;
 import dsk.tweet_a_gram.plugin.modules.PluginModule;
 
 public class LogoutAction implements IPluginActionDelegate {
@@ -28,7 +28,7 @@ public class LogoutAction implements IPluginActionDelegate {
 		int result = JOptionPane.showConfirmDialog(null, R.m("ログアウトします。よろしいですか？"), "", JOptionPane.OK_CANCEL_OPTION);
 		switch (result) {
 		case JOptionPane.OK_OPTION:
-			Injector injector = Guice.createInjector(Stage.PRODUCTION, new CoreModule(), new PluginModule());
+			Injector injector = Guice.createInjector(Stage.PRODUCTION, new TwitterModule(), new PluginModule());
 			TweetService<Twitter> tweetService = injector.getInstance(Key.get(new TypeLiteral<TweetService<Twitter>>() {
 			}));
 			tweetService.getAuthService().deleteAccessToken();

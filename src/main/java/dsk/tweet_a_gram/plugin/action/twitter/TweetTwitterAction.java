@@ -1,4 +1,4 @@
-package dsk.tweet_a_gram.plugin.action;
+package dsk.tweet_a_gram.plugin.action.twitter;
 
 import javax.swing.JOptionPane;
 
@@ -24,7 +24,7 @@ import dsk.common.exception.DskRuntimeException;
 import dsk.common.exception.DskWarningException;
 import dsk.common.util.R;
 import dsk.tweet_a_gram.core.service.TweetService;
-import dsk.tweet_a_gram.plugin.modules.CoreModule;
+import dsk.tweet_a_gram.plugin.modules.TwitterModule;
 import dsk.tweet_a_gram.plugin.modules.PluginModule;
 
 public class TweetTwitterAction implements IPluginActionDelegate {
@@ -32,7 +32,7 @@ public class TweetTwitterAction implements IPluginActionDelegate {
 
 	@Override
 	public Object run(IWindow window) throws UnExpectedException {
-		Injector injector = Guice.createInjector(Stage.PRODUCTION, new CoreModule(), new PluginModule());
+		Injector injector = Guice.createInjector(Stage.PRODUCTION, new TwitterModule(), new PluginModule());
 		TweetService<Twitter> tweetService = injector.getInstance(Key.get(new TypeLiteral<TweetService<Twitter>>() {
 		}));
 		try {
