@@ -13,7 +13,7 @@
          <action
 			   label="%menu_label"
                icon="icons/sample.gif"
-               class="dsk.tweet_a_gram.plugin.action.twitter.TweetAction"
+               class="dsk.tweet_a_gram.plugin.twitter.action.TweetAction"
                tooltip="%menu_tooltip"
                menubarPath="tool/tweet-a-gram-plugin/"
                id="tweet-a-gram-plugin-twitter-tweet">
@@ -21,7 +21,7 @@
          <action
 			   label="%menu_label_logout"
                icon="icons/sample.gif"
-               class="dsk.tweet_a_gram.plugin.action.twitter.LogoutAction"
+               class="dsk.tweet_a_gram.plugin.twitter.action.LogoutAction"
                tooltip="%menu_tooltip_logout"
                menubarPath="tool/tweet-a-gram-plugin/tweet-a-gram-plugin-twitter-tweet"
                id="tweet-a-gram-plugin-twitter-logout">
@@ -29,7 +29,7 @@
          <action
 			   label="%menu_label"
                icon="icons/sample.gif"
-               class="dsk.tweet_a_gram.plugin.action.facebook.TweetAction"
+               class="dsk.tweet_a_gram.plugin.facebook.action.TweetAction"
                tooltip="%menu_tooltip"
                menubarPath="tool/tweet-a-gram-plugin/"
                id="tweet-a-gram-plugin-facebook-tweet">
@@ -37,7 +37,7 @@
          <action
 			   label="%menu_label_logout"
                icon="icons/sample.gif"
-               class="dsk.tweet_a_gram.plugin.action.facebook.LogoutAction"
+               class="dsk.tweet_a_gram.plugin.facebook.action.LogoutAction"
                tooltip="%menu_tooltip_logout"
                menubarPath="tool/tweet-a-gram-plugin/tweet-a-gram-plugin-facebook-tweet"
                id="tweet-a-gram-plugin-facebook-logout">

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.web.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml" fx:controller="dsk.tweet_a_gram.plugin.facebook.gui.AuthController">
+  <children>
+    <TextField fx:id="url" layoutY="2.0" prefWidth="545.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="53.0" />
+    <WebView fx:id="webView" prefHeight="371.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="29.0" />
+    <Button fx:id="go" mnemonicParsing="false" onAction="#handleGo" text="Go" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0" />
+  </children>
+</AnchorPane>

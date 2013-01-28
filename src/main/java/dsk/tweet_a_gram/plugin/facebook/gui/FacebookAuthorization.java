@@ -1,132 +1,82 @@
 package dsk.tweet_a_gram.plugin.facebook.gui;
 
-import static dsk.tweet_a_gram.core.Const.MESSAGE;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 
-import java.awt.Color;
-import java.awt.Desktop;
-import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
 
-import javax.swing.AbstractAction;
-import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JEditorPane;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.border.EmptyBorder;
-import javax.swing.event.HyperlinkEvent;
-import javax.swing.event.HyperlinkListener;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import dsk.common.exception.DskRuntimeException;
-import dsk.common.util.R;
 import dsk.tweet_a_gram.core.delegates.AuthDelegate;
 
 public class FacebookAuthorization extends JDialog implements AuthDelegate {
-    private static final long serialVersionUID = -7125988251336550150L;
-    private static final Logger LOG = LoggerFactory.getLogger(FacebookAuthorization.class);
+	private static final long serialVersionUID = 1L;
 
-    private JPanel contentPane;
-    private JTextField textField;
+	private static final Logger LOG = LoggerFactory.getLogger(FacebookAuthorization.class);
 
-    private String authUrl;
+	private AuthController controller;
 
-    /**
-     * Create the frame.
-     */
-    public FacebookAuthorization() {
-        setModal(true);
-        setResizable(false);
-        setTitle(R.m(MESSAGE, "あすったー"));
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 317, 188);
-        setLocationRelativeTo(null);
-        contentPane = new JPanel();
-        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-        setContentPane(contentPane);
-        contentPane.setLayout(null);
+	private boolean init;
 
-        JTextPane lblNewLabel = new JTextPane();
-        lblNewLabel.setText(R.m(MESSAGE, "下記リンクよりtwitterの認証を行ってください。"));
-        lblNewLabel.setBackground(new Color(238, 238, 238));
-        lblNewLabel.setBounds(14, 6, 288, 49);
-        contentPane.add(lblNewLabel);
+	private String authUrl;
 
-        textField = new JTextField();
-        textField.setBounds(107, 95, 152, 28);
-        contentPane.add(textField);
-        textField.setColumns(10);
+	public FacebookAuthorization() {
+		super();
+		LOG.trace("FacebookAuthorization.FacebookAuthorization()");
+	}
 
-        JButton btnNewButton = new JButton(R.m(MESSAGE, "認証する"));
-        btnNewButton.setBounds(100, 129, 117, 29);
-        btnNewButton.addActionListener(new AbstractAction() {
-            private static final long serialVersionUID = 2694805711786965093L;
+	@Override
+	public String doAuthTwitter(String authUrl) {
+		this.authUrl = authUrl;
+		initUI();
+		this.setVisible(true);
+		return this.controller.getAccessToken();
+	}
 
-            @Override
-            public void actionPerformed(ActionEvent event) {
-                setVisible(false);
-            }
-        });
-        contentPane.add(btnNewButton);
+	private void initUI() {
+		if (this.init) {
+			return;
+		}
+		// DISPOSEすると、JavaFXスレッドが終了してしまう
+		this.setBounds(100, 100, 450, 300);
+		this.setModal(true);
 
-        JLabel lblNewLabel_1 = new JLabel(R.m(MESSAGE, "PIN入力"));
-        lblNewLabel_1.setBounds(46, 101, 61, 16);
-        contentPane.add(lblNewLabel_1);
-
-        JEditorPane dtrpnl = new JEditorPane();
-        dtrpnl.setBackground(new Color(238, 238, 238));
-        dtrpnl.setContentType("text/html");
-        dtrpnl.setEditable(false);
-        dtrpnl.setBounds(29, 67, 258, 16);
-        dtrpnl.putClientProperty(JEditorPane.HONOR_DISPLAY_PROPERTIES, Boolean.TRUE);
-        dtrpnl.setText(String.format("<a href=\"%s\">%s</a>", this.authUrl,
-                R.m(MESSAGE, "クリックするとブラウザが起動します。")));
-        dtrpnl.addHyperlinkListener(new HyperlinkListener() {
-            @Override
-            public void hyperlinkUpdate(HyperlinkEvent event) {
-                if (HyperlinkEvent.EventType.ACTIVATED == event.getEventType()) {
-                    try {
-                        Desktop.getDesktop().browse(new URI(authUrl));
-                    } catch (IOException e) {
-                        throw new DskRuntimeException(e);
-                    } catch (URISyntaxException e) {
-                        throw new DskRuntimeException(e);
-                    }
-                }
-            }
-        });
-        contentPane.add(dtrpnl);
-    }
-
-    @Override
-    public String doAuthTwitter(String url) {
-        LOG.debug(url);
-        this.authUrl = url;
-        this.setVisible(true);
-        if (StringUtils.isEmpty(this.textField.getText())) {
-            return null;
-        }
-        return this.textField.getText();
-    }
-
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    FacebookAuthorization frame = new FacebookAuthorization();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+		final ClassLoader classLoader = getClass().getClassLoader();
+		// JavaFXのコンポーネントを貼り付けるPanel
+		final JFXPanel fxPanel = new JFXPanel();
+		this.add(fxPanel);
+		this.init = true;
+		// JavaFXのThreadを使用すること
+		FutureTask<Void> futureTask = new FutureTask<Void>(new Callable<Void>() {
+			@Override
+			public Void call() throws Exception {
+				AuthApplication app = new AuthApplication();
+				app.setClassLoader(classLoader);
+				fxPanel.setScene(app.createScene());
+				controller = app.getController();
+				controller.setAuthUrl(authUrl);
+				controller.setStageDelegate(new StageDelegate() {
+					@Override
+					public void hide() {
+						setVisible(false);
+					}
+				});
+				return null;
+			}
+		});
+		Platform.runLater(futureTask);
+		try {
+			futureTask.get();
+		} catch (InterruptedException e) {
+			throw new DskRuntimeException(e);
+		} catch (ExecutionException e) {
+			throw new DskRuntimeException(e);
+		}
+	}
 }
