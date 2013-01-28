@@ -2,24 +2,27 @@ package dsk.tweet_a_gram.plugin.modules;
 
 import java.lang.reflect.Method;
 
+import com.change_vision.jude.api.inf.project.ProjectAccessor;
+import com.change_vision.jude.api.inf.project.ProjectAccessorFactory;
 import com.google.inject.AbstractModule;
 import com.google.inject.matcher.AbstractMatcher;
 import com.google.inject.matcher.Matchers;
 
+import dsk.common.exception.DskRuntimeException;
 import dsk.common.logging.LogInterceptor;
-import dsk.tweet_a_gram.core.delegates.AuthDelegate;
 import dsk.tweet_a_gram.core.delegates.MediaDelegate;
-import dsk.tweet_a_gram.core.delegates.TweetDelegate;
-import dsk.tweet_a_gram.plugin.gui.Tweet;
-import dsk.tweet_a_gram.plugin.gui.TwitterAuthorization;
 import dsk.tweet_a_gram.plugin.service.impl.CurrentDiagramService;
 
 public class PluginModule extends AbstractModule {
 
 	@Override
 	protected void configure() {
-		this.bind(AuthDelegate.class).to(TwitterAuthorization.class);
-		this.bind(TweetDelegate.class).to(Tweet.class);
+		try {
+			this.bind(ProjectAccessor.class).toInstance(ProjectAccessorFactory.getProjectAccessor());
+			// this.bind(ProjectAccessor.class).toInstance(APIAccessorFactory.getAPIAccessorFactory().getProjectAccessor());
+		} catch (ClassNotFoundException e) {
+			throw new DskRuntimeException(e);
+		}
 		this.bind(MediaDelegate.class).to(CurrentDiagramService.class);
 
 		this.bindInterceptor(Matchers.inSubpackage("dsk.tweet_a_gram.core"), new NoSyntheticMatcher(),

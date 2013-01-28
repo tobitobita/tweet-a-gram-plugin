@@ -30,9 +30,9 @@ import dsk.common.exception.DskRuntimeException;
 import dsk.common.util.R;
 import dsk.tweet_a_gram.core.delegates.AuthDelegate;
 
-public class TwitterAuthorization extends JDialog implements AuthDelegate {
+public class FacebookAuthorization extends JDialog implements AuthDelegate {
     private static final long serialVersionUID = -7125988251336550150L;
-    private static final Logger LOG = LoggerFactory.getLogger(TwitterAuthorization.class);
+    private static final Logger LOG = LoggerFactory.getLogger(FacebookAuthorization.class);
 
     private JPanel contentPane;
     private JTextField textField;
@@ -42,7 +42,7 @@ public class TwitterAuthorization extends JDialog implements AuthDelegate {
     /**
      * Create the frame.
      */
-    public TwitterAuthorization() {
+    public FacebookAuthorization() {
         setModal(true);
         setResizable(false);
         setTitle(R.m(MESSAGE, "あすったー"));
@@ -121,7 +121,7 @@ public class TwitterAuthorization extends JDialog implements AuthDelegate {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    TwitterAuthorization frame = new TwitterAuthorization();
+                    FacebookAuthorization frame = new FacebookAuthorization();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();

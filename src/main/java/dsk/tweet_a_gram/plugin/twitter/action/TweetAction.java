@@ -8,10 +8,8 @@ import org.slf4j.LoggerFactory;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
-import com.change_vision.jude.api.inf.APIAccessorFactory;
 import com.change_vision.jude.api.inf.exception.ProjectNotFoundException;
 import com.change_vision.jude.api.inf.project.ProjectAccessor;
-import com.change_vision.jude.api.inf.project.ProjectAccessorFactory;
 import com.change_vision.jude.api.inf.ui.IPluginActionDelegate;
 import com.change_vision.jude.api.inf.ui.IWindow;
 import com.google.inject.Guice;
@@ -21,12 +19,11 @@ import com.google.inject.Stage;
 import com.google.inject.TypeLiteral;
 
 import dsk.common.exception.DskException;
-import dsk.common.exception.DskRuntimeException;
 import dsk.common.exception.DskWarningException;
 import dsk.common.util.R;
 import dsk.tweet_a_gram.core.service.TweetService;
-import dsk.tweet_a_gram.plugin.modules.TwitterModule;
 import dsk.tweet_a_gram.plugin.modules.PluginModule;
+import dsk.tweet_a_gram.plugin.twitter.module.TwitterModule;
 
 public class TweetAction implements IPluginActionDelegate {
 	private static final Logger LOG = LoggerFactory.getLogger(TweetAction.class);
@@ -38,14 +35,15 @@ public class TweetAction implements IPluginActionDelegate {
 		TweetService<Twitter> tweetService = injector.getInstance(Key.get(new TypeLiteral<TweetService<Twitter>>() {
 		}));
 		try {
-			ProjectAccessor projectAccessor = ProjectAccessorFactory.getProjectAccessor();
-			projectAccessor.getProject();
-
-			tweetService.tweet();
+			injector.getInstance(ProjectAccessor.class).getProject();
 		} catch (ProjectNotFoundException e) {
 			LOG.error(e.getLocalizedMessage());
 			JOptionPane.showMessageDialog(window.getParent(), R.m("プロジェクトを開いていません。既存のプロジェクトを開くか、新しくプロジェクトを作成してください"),
 					"Warning", JOptionPane.WARNING_MESSAGE);
+			throw new UnExpectedException();
+		}
+		try {
+			tweetService.tweet();
 		} catch (DskWarningException e) {
 			if (TwitterException.UNAUTHORIZED == ((TwitterException) e.getCause()).getStatusCode()) {
 				tweetService.getAuthService().deleteAccessToken();
@@ -55,9 +53,7 @@ public class TweetAction implements IPluginActionDelegate {
 					JOptionPane.ERROR_MESSAGE);
 		} catch (DskException e) {
 			LOG.warn(e.getMessage());
-		} catch (ClassNotFoundException e) {
-			LOG.error(e.getLocalizedMessage(), e);
-			throw new DskRuntimeException(e);
+			throw new UnExpectedException();
 		}
 		return null;
 	}

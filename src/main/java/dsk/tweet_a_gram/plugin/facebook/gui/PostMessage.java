@@ -31,10 +31,10 @@ import dsk.common.exception.DskRuntimeException;
 import dsk.common.util.R;
 import dsk.tweet_a_gram.core.delegates.TweetDelegate;
 
-public class Tweet extends JDialog implements TweetDelegate {
+public class PostMessage extends JDialog implements TweetDelegate {
     private static final long serialVersionUID = -2198301704134244051L;
 
-    private static final Logger LOG = LoggerFactory.getLogger(Tweet.class);
+    private static final Logger LOG = LoggerFactory.getLogger(PostMessage.class);
     private static final int MAX_COUNT = 140;
     /** #5C0002 */
     private static final Color DARK_RED = new Color(92, 0, 2);
@@ -53,7 +53,7 @@ public class Tweet extends JDialog implements TweetDelegate {
     /**
      * Create the frame.
      */
-    public Tweet() {
+    public PostMessage() {
         setModal(true);
         setResizable(false);
         setTitle(R.m(MESSAGE, "あすったー"));
@@ -171,7 +171,7 @@ public class Tweet extends JDialog implements TweetDelegate {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    Tweet frame = new Tweet();
+                    PostMessage frame = new PostMessage();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();

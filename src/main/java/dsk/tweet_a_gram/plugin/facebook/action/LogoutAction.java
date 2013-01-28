@@ -5,8 +5,6 @@ import javax.swing.JOptionPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import twitter4j.Twitter;
-
 import com.change_vision.jude.api.inf.ui.IPluginActionDelegate;
 import com.change_vision.jude.api.inf.ui.IWindow;
 import com.google.inject.Guice;
@@ -17,7 +15,7 @@ import com.google.inject.TypeLiteral;
 
 import dsk.common.util.R;
 import dsk.tweet_a_gram.core.service.TweetService;
-import dsk.tweet_a_gram.plugin.modules.TwitterModule;
+import dsk.tweet_a_gram.plugin.facebook.module.FacebookModule;
 import dsk.tweet_a_gram.plugin.modules.PluginModule;
 
 public class LogoutAction implements IPluginActionDelegate {
@@ -28,8 +26,8 @@ public class LogoutAction implements IPluginActionDelegate {
 		int result = JOptionPane.showConfirmDialog(null, R.m("ログアウトします。よろしいですか？"), "", JOptionPane.OK_CANCEL_OPTION);
 		switch (result) {
 		case JOptionPane.OK_OPTION:
-			Injector injector = Guice.createInjector(Stage.PRODUCTION, new TwitterModule(), new PluginModule());
-			TweetService<Twitter> tweetService = injector.getInstance(Key.get(new TypeLiteral<TweetService<Twitter>>() {
+			Injector injector = Guice.createInjector(Stage.PRODUCTION, new FacebookModule(), new PluginModule());
+			TweetService<String> tweetService = injector.getInstance(Key.get(new TypeLiteral<TweetService<String>>() {
 			}));
 			tweetService.getAuthService().deleteAccessToken();
 			break;

@@ -1,9 +1,10 @@
 package dsk.tweet_a_gram.plugin.service.impl;
 
+import javax.inject.Inject;
 import javax.swing.JOptionPane;
 
-import com.change_vision.jude.api.inf.APIAccessorFactory;
 import com.change_vision.jude.api.inf.model.IDiagram;
+import com.change_vision.jude.api.inf.project.ProjectAccessor;
 import com.change_vision.jude.api.inf.view.IViewManager;
 
 import dsk.common.exception.DskRuntimeException;
@@ -12,12 +13,18 @@ import dsk.tweet_a_gram.core.delegates.MediaDelegate;
 import dsk.tweet_a_gram.core.utils.TweetTool;
 
 public class CurrentDiagramService implements MediaDelegate {
+	private ProjectAccessor projectAccessor;
+
+	@Inject
+	public CurrentDiagramService(ProjectAccessor projectAccessor) {
+		this.projectAccessor = projectAccessor;
+	}
 
 	@Override
 	public String getMediaPath() {
 		String mediaPath = null;
 		try {
-			IViewManager viewManager = APIAccessorFactory.getAPIAccessorFactory().getProjectAccessor().getViewManager();
+			IViewManager viewManager = this.projectAccessor.getViewManager();
 			IDiagram d = viewManager.getDiagramViewManager().getCurrentDiagram();
 			if (null == d) {
 				JOptionPane.showMessageDialog(viewManager.getMainFrame(), R.m("図を表示してください"), "",

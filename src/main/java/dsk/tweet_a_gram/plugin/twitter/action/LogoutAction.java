@@ -17,8 +17,8 @@ import com.google.inject.TypeLiteral;
 
 import dsk.common.util.R;
 import dsk.tweet_a_gram.core.service.TweetService;
-import dsk.tweet_a_gram.plugin.modules.TwitterModule;
 import dsk.tweet_a_gram.plugin.modules.PluginModule;
+import dsk.tweet_a_gram.plugin.twitter.module.TwitterModule;
 
 public class LogoutAction implements IPluginActionDelegate {
 	private static final Logger LOG = LoggerFactory.getLogger(LogoutAction.class);
