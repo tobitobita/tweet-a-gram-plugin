@@ -1,4 +1,4 @@
-package dsk.tweet_a_gram.plugin.action.twitter;
+package dsk.tweet_a_gram.plugin.facebook.action;
 
 import javax.swing.JOptionPane;
 

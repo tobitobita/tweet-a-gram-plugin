@@ -1,4 +1,4 @@
-package dsk.tweet_a_gram.plugin.modules;
+package dsk.tweet_a_gram.plugin.twitter.module;
 
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
@@ -11,7 +11,7 @@ import dsk.tweet_a_gram.core.service.TweetService;
 import dsk.tweet_a_gram.core.twitter.TweetTwitter;
 import dsk.tweet_a_gram.core.twitter.TwitterAuthService;
 
-public class FacebookModule extends AbstractModule {
+public class TwitterModule extends AbstractModule {
 
 	@Override
 	protected void configure() {

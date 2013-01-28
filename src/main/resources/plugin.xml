@@ -13,18 +13,34 @@
          <action
 			   label="%menu_label"
                icon="icons/sample.gif"
-               class="dsk.tweet_a_gram.plugin.action.TweetTwitterAction"
+               class="dsk.tweet_a_gram.plugin.action.twitter.TweetAction"
                tooltip="%menu_tooltip"
                menubarPath="tool/tweet-a-gram-plugin/"
-               id="tweet-a-gram-plugin-1">
+               id="tweet-a-gram-plugin-twitter-tweet">
          </action>
          <action
 			   label="%menu_label_logout"
                icon="icons/sample.gif"
-               class="dsk.tweet_a_gram.plugin.action.LogoutAction"
+               class="dsk.tweet_a_gram.plugin.action.twitter.LogoutAction"
                tooltip="%menu_tooltip_logout"
-               menubarPath="tool/tweet-a-gram-plugin/tweet-a-gram-plugin-1"
-               id="tweet-a-gram-plugin-2">
+               menubarPath="tool/tweet-a-gram-plugin/tweet-a-gram-plugin-twitter-tweet"
+               id="tweet-a-gram-plugin-twitter-logout">
+         </action>
+         <action
+			   label="%menu_label"
+               icon="icons/sample.gif"
+               class="dsk.tweet_a_gram.plugin.action.facebook.TweetAction"
+               tooltip="%menu_tooltip"
+               menubarPath="tool/tweet-a-gram-plugin/"
+               id="tweet-a-gram-plugin-facebook-tweet">
+         </action>
+         <action
+			   label="%menu_label_logout"
+               icon="icons/sample.gif"
+               class="dsk.tweet_a_gram.plugin.action.facebook.LogoutAction"
+               tooltip="%menu_tooltip_logout"
+               menubarPath="tool/tweet-a-gram-plugin/tweet-a-gram-plugin-facebook-tweet"
+               id="tweet-a-gram-plugin-facebook-logout">
          </action>
      </actionSet>
    </extension>

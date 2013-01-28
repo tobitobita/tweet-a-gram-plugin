@@ -1,16 +1,15 @@
-package dsk.tweet_a_gram.plugin.action.facebook;
+package dsk.tweet_a_gram.plugin.facebook.action;
 
 import javax.swing.JOptionPane;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
-import com.change_vision.jude.api.inf.APIAccessorFactory;
 import com.change_vision.jude.api.inf.exception.ProjectNotFoundException;
 import com.change_vision.jude.api.inf.project.ProjectAccessor;
+import com.change_vision.jude.api.inf.project.ProjectAccessorFactory;
 import com.change_vision.jude.api.inf.ui.IPluginActionDelegate;
 import com.change_vision.jude.api.inf.ui.IWindow;
 import com.google.inject.Guice;
@@ -24,19 +23,20 @@ import dsk.common.exception.DskRuntimeException;
 import dsk.common.exception.DskWarningException;
 import dsk.common.util.R;
 import dsk.tweet_a_gram.core.service.TweetService;
-import dsk.tweet_a_gram.plugin.modules.TwitterModule;
+import dsk.tweet_a_gram.plugin.modules.FacebookModule;
 import dsk.tweet_a_gram.plugin.modules.PluginModule;
 
-public class TweetTwitterAction implements IPluginActionDelegate {
-	private static final Logger LOG = LoggerFactory.getLogger(TweetTwitterAction.class);
+public class TweetAction implements IPluginActionDelegate {
+	private static final Logger LOG = LoggerFactory.getLogger(TweetAction.class);
 
 	@Override
 	public Object run(IWindow window) throws UnExpectedException {
-		Injector injector = Guice.createInjector(Stage.PRODUCTION, new TwitterModule(), new PluginModule());
-		TweetService<Twitter> tweetService = injector.getInstance(Key.get(new TypeLiteral<TweetService<Twitter>>() {
+		LOG.trace("run");
+		Injector injector = Guice.createInjector(Stage.PRODUCTION, new FacebookModule(), new PluginModule());
+		TweetService<String> tweetService = injector.getInstance(Key.get(new TypeLiteral<TweetService<String>>() {
 		}));
 		try {
-			ProjectAccessor projectAccessor = APIAccessorFactory.getAPIAccessorFactory().getProjectAccessor();
+			ProjectAccessor projectAccessor = ProjectAccessorFactory.getProjectAccessor();
 			projectAccessor.getProject();
 
 			tweetService.tweet();

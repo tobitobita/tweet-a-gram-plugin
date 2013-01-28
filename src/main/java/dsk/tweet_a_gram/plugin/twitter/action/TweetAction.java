@@ -1,4 +1,4 @@
-package dsk.tweet_a_gram.plugin.action.twitter;
+package dsk.tweet_a_gram.plugin.twitter.action;
 
 import javax.swing.JOptionPane;
 
@@ -11,6 +11,7 @@ import twitter4j.TwitterException;
 import com.change_vision.jude.api.inf.APIAccessorFactory;
 import com.change_vision.jude.api.inf.exception.ProjectNotFoundException;
 import com.change_vision.jude.api.inf.project.ProjectAccessor;
+import com.change_vision.jude.api.inf.project.ProjectAccessorFactory;
 import com.change_vision.jude.api.inf.ui.IPluginActionDelegate;
 import com.change_vision.jude.api.inf.ui.IWindow;
 import com.google.inject.Guice;
@@ -27,16 +28,17 @@ import dsk.tweet_a_gram.core.service.TweetService;
 import dsk.tweet_a_gram.plugin.modules.TwitterModule;
 import dsk.tweet_a_gram.plugin.modules.PluginModule;
 
-public class TweetTwitterAction implements IPluginActionDelegate {
-	private static final Logger LOG = LoggerFactory.getLogger(TweetTwitterAction.class);
+public class TweetAction implements IPluginActionDelegate {
+	private static final Logger LOG = LoggerFactory.getLogger(TweetAction.class);
 
 	@Override
 	public Object run(IWindow window) throws UnExpectedException {
+		LOG.trace("run");
 		Injector injector = Guice.createInjector(Stage.PRODUCTION, new TwitterModule(), new PluginModule());
 		TweetService<Twitter> tweetService = injector.getInstance(Key.get(new TypeLiteral<TweetService<Twitter>>() {
 		}));
 		try {
-			ProjectAccessor projectAccessor = APIAccessorFactory.getAPIAccessorFactory().getProjectAccessor();
+			ProjectAccessor projectAccessor = ProjectAccessorFactory.getProjectAccessor();
 			projectAccessor.getProject();
 
 			tweetService.tweet();

@@ -1,4 +1,4 @@
-package dsk.tweet_a_gram.plugin.gui;
+package dsk.tweet_a_gram.plugin.twitter.gui;
 
 import static dsk.tweet_a_gram.core.Const.MESSAGE;
 
