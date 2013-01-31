@@ -18,6 +18,5 @@
 	</root>
 	<logger name="dsk" level="trace">
 		<!-- appender-ref ref="FILE" / -->
-		<appender-ref ref="STDOUT" />
 	</logger>
 </configuration>
