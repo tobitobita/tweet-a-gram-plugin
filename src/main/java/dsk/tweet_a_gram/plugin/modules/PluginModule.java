@@ -19,7 +19,7 @@ public class PluginModule extends AbstractModule {
 	protected void configure() {
 		try {
 			this.bind(ProjectAccessor.class).toInstance(ProjectAccessorFactory.getProjectAccessor());
-			// this.bind(ProjectAccessor.class).toInstance(APIAccessorFactory.getAPIAccessorFactory().getProjectAccessor());
+			// this.bind(ProjectAccessor.class).toInstance(AstahAPI.getAstahAPI().getProjectAccessor());
 		} catch (ClassNotFoundException e) {
 			throw new DskRuntimeException(e);
 		}
