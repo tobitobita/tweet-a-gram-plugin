@@ -19,6 +19,7 @@ public class UpdateStatusApplication extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		stage.setScene(this.createScene());
+		stage.setResizable(false);
 		stage.show();
 	}
 
@@ -31,7 +32,7 @@ public class UpdateStatusApplication extends Application {
 		loader.setClassLoader(theClassLoader);
 		InputStream is = null;
 		try {
-			is = theClassLoader.getResource("dsk/tweet_a_gram/plugin/facebook/gui/tweet.fxml").openConnection()
+			is = theClassLoader.getResource("dsk/tweet_a_gram/plugin/facebook/gui/updateStatus.fxml").openConnection()
 					.getInputStream();
 			loader.load(is);
 			this.controller = loader.getController();
