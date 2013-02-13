@@ -36,6 +36,7 @@ public class PostMessage extends JDialog implements TweetDelegate {
 		if (this.init) {
 			return;
 		}
+		this.init = true;
 		// DISPOSEすると、JavaFXスレッドが終了してしまう
 		this.setBounds(100, 100, 450, 300);
 		this.setModal(true);
@@ -44,7 +45,6 @@ public class PostMessage extends JDialog implements TweetDelegate {
 		// JavaFXのコンポーネントを貼り付けるPanel
 		final JFXPanel fxPanel = new JFXPanel();
 		this.add(fxPanel);
-		this.init = true;
 		// JavaFXのThreadを使用すること
 		FutureTask<Void> futureTask = new FutureTask<Void>(new Callable<Void>() {
 			@Override
