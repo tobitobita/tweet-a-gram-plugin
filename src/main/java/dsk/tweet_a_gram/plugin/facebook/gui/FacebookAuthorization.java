@@ -16,7 +16,7 @@ import dsk.common.exception.DskRuntimeException;
 import dsk.tweet_a_gram.core.delegates.AuthDelegate;
 
 public class FacebookAuthorization extends JDialog implements AuthDelegate {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -1092669266633396872L;
 
 	private static final Logger LOG = LoggerFactory.getLogger(FacebookAuthorization.class);
 

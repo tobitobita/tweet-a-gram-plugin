@@ -10,7 +10,7 @@
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="336.0" xmlns:fx="http://javafx.com/fxml" fx:controller="dsk.tweet_a_gram.plugin.facebook.gui.UpdateStatusController">
   <children>
     <TextArea id="text" fx:id="inputText" prefWidth="308.0" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
-    <ImageView fitHeight="230.9999710762345" fitWidth="307.9999694824219" layoutY="194.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+    <ImageView fx:id="image" fitHeight="230.9999710762345" fitWidth="307.9999694824219" layoutY="194.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
     <Button fx:id="tweetButton" layoutX="131.0" mnemonicParsing="false" onAction="#handleTweet" text="つぶやく" AnchorPane.bottomAnchor="14.0" />
   </children>
 </AnchorPane>
