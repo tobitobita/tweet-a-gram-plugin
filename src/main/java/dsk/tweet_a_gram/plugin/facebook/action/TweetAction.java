@@ -40,7 +40,7 @@ public class TweetAction implements IPluginActionDelegate {
 			LOG.error(e.getLocalizedMessage());
 			JOptionPane.showMessageDialog(window.getParent(), R.m("プロジェクトを開いていません。既存のプロジェクトを開くか、新しくプロジェクトを作成してください"),
 					"Warning", JOptionPane.WARNING_MESSAGE);
-			throw new UnExpectedException();
+			return null;
 		}
 		try {
 			tweetService.tweet();
