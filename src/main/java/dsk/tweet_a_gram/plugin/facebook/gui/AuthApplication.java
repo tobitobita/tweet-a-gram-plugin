@@ -35,14 +35,14 @@ public class AuthApplication extends Application {
 					.getInputStream();
 			loader.load(is);
 			this.controller = loader.getController();
+			Parent root = loader.getRoot();
+			Scene scene = new Scene(root);
+			return scene;
 		} catch (IOException e) {
 			throw new DskRuntimeException("fxmlの指定が不正です", e);
 		} finally {
 			IoTools.close(is);
 		}
-		Parent root = loader.getRoot();
-		Scene scene = new Scene(root);
-		return scene;
 	}
 
 	/* getter, setter */
