@@ -9,7 +9,6 @@ import javafx.concurrent.Worker.State;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
@@ -18,8 +17,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class AuthController implements Initializable {
-	@FXML
-	private TextField url;
 	@FXML
 	private WebView webView;
 
@@ -31,13 +28,10 @@ public class AuthController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
-		System.out.println("AuthContorller.initialize()");
-		webView.getEngine().getLoadWorker().stateProperty().addListener(new ChangeListener<State>() {
+		WebEngine engine = webView.getEngine();
+		engine.getLoadWorker().stateProperty().addListener(new ChangeListener<State>() {
 			@Override
 			public void changed(ObservableValue<? extends State> value, State oldState, State newState) {
-				System.out.println("\t" + value);
-				System.out.println("\t" + oldState);
-				System.out.println("\t" + newState);
 				if (State.SUCCEEDED != newState) {
 					return;
 				}
@@ -51,18 +45,15 @@ public class AuthController implements Initializable {
 				if (!"Success".equals(body.getTextContent())) {
 					return;
 				}
-				stageDelegate.hide();
-				System.out.println(engine.getLocation());
 				accessToken = getAccessToken(engine.getLocation().toString());
+				stageDelegate.hide();
 			}
 		});
 	}
 
 	@FXML
-	private void handleGo(ActionEvent event) {
-		System.out.println(url.getText());
-		WebEngine engine = this.webView.getEngine();
-		engine.load(this.authUrl);
+	public void handleGo(ActionEvent event) {
+		webView.getEngine().load(this.authUrl);
 	}
 
 	private static String getAccessToken(String url) {
