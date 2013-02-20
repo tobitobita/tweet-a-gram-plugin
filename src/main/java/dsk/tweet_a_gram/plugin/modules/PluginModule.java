@@ -2,8 +2,8 @@ package dsk.tweet_a_gram.plugin.modules;
 
 import java.lang.reflect.Method;
 
+import com.change_vision.jude.api.inf.AstahAPI;
 import com.change_vision.jude.api.inf.project.ProjectAccessor;
-import com.change_vision.jude.api.inf.project.ProjectAccessorFactory;
 import com.google.inject.AbstractModule;
 import com.google.inject.matcher.AbstractMatcher;
 import com.google.inject.matcher.Matchers;
@@ -18,8 +18,8 @@ public class PluginModule extends AbstractModule {
 	@Override
 	protected void configure() {
 		try {
-			this.bind(ProjectAccessor.class).toInstance(ProjectAccessorFactory.getProjectAccessor());
-			// this.bind(ProjectAccessor.class).toInstance(AstahAPI.getAstahAPI().getProjectAccessor());
+			// this.bind(ProjectAccessor.class).toInstance(ProjectAccessorFactory.getProjectAccessor());
+			this.bind(ProjectAccessor.class).toInstance(AstahAPI.getAstahAPI().getProjectAccessor());
 		} catch (ClassNotFoundException e) {
 			throw new DskRuntimeException(e);
 		}
