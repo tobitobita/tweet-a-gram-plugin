@@ -10,7 +10,7 @@ import dsk.tweet_a_gram.core.facebook.TweetFacebook;
 import dsk.tweet_a_gram.core.service.AuthService;
 import dsk.tweet_a_gram.core.service.TweetService;
 import dsk.tweet_a_gram.plugin.facebook.gui.FacebookAuthorization;
-import dsk.tweet_a_gram.plugin.facebook.gui.PostMessage;
+import dsk.tweet_a_gram.plugin.facebook.gui.Tweet;
 
 public class FacebookModule extends AbstractModule {
 
@@ -21,6 +21,7 @@ public class FacebookModule extends AbstractModule {
 		this.bind(new TypeLiteral<AuthService<String>>() {
 		}).to(FacebookAuthService.class);
 		this.bind(AuthDelegate.class).to(FacebookAuthorization.class);
-		this.bind(TweetDelegate.class).to(PostMessage.class);
+		// this.bind(TweetDelegate.class).to(PostMessage.class);
+		this.bind(TweetDelegate.class).to(Tweet.class);
 	}
 }

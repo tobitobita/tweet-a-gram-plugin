@@ -82,7 +82,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
-				<version>3.0</version>
+				<version>3.2</version>
 				<configuration>
 					<locales>ja</locales>
 					<inputEncoding>UTF-8</inputEncoding>
@@ -93,7 +93,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.10</version>
+				<version>2.13</version>
 				<configuration>
 					<systemPropertyVariables>
 						<file.encoding>utf-8</file.encoding>
@@ -148,7 +148,7 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-dependency-plugin</artifactId>
-				<version>2.4</version>
+				<version>2.6</version>
 				<executions>
 					<execution>
 						<id>copy-dependencies</id>
@@ -166,7 +166,7 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
+				<version>3.0</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
 					<source>1.7</source>
@@ -184,7 +184,7 @@
 			<plugin>
 				<groupId>com.change_vision.astah</groupId>
 				<artifactId>astah-maven-plugin</artifactId>
-				<version>0.9.3</version>
+				<version>1.0.0</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.felix</groupId>
@@ -217,6 +217,7 @@
 						<!-- | each module can override these defaults in their osgi.bnd file -->
 						<_include>-osgi.bnd</_include>
 						<Embed-Dependency>*;scope=compile|runtime;type=!pom</Embed-Dependency>
+						<Embed-Transitive>true</Embed-Transitive>
 					</instructions>
 				</configuration>
 			</plugin>
@@ -290,69 +291,14 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>1.7.2</version>
+			<groupId>dsk</groupId>
+			<artifactId>tweet-a-gram-core</artifactId>
+			<version>2.0.12</version>
 		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.0.7</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-			<version>1.0.7</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.1</version>
-		</dependency>
-		<dependency>
-			<groupId>aopalliance</groupId>
-			<artifactId>aopalliance</artifactId>
-			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>dsk</groupId>
-			<artifactId>dsk-common</artifactId>
-			<version>1.6.0</version>
-		</dependency>
-		<dependency>
-			<groupId>dsk</groupId>
-			<artifactId>tweet-a-gram-core</artifactId>
-			<version>2.0.12-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>org.twitter4j</groupId>
-			<artifactId>twitter4j-core</artifactId>
-			<version>3.0.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>4.2.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpcore</artifactId>
-			<version>4.2.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpmime</artifactId>
-			<version>4.2.2</version>
+			<version>1.0.9</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.inject</groupId>
@@ -362,10 +308,9 @@
 		<dependency>
 			<groupId>javax.javafx</groupId>
 			<artifactId>javafx</artifactId>
-			<version>2</version>
+			<version>2.2.5</version>
 			<scope>system</scope>
-			<systemPath>${JAVA_HOME}/jre/lib/jfxrt.jar</systemPath>
-			<!-- systemPath>/Library/Java/JavaVirtualMachines/jdk1.7.0_13.jdk/Contents/Home/jre/lib/jfxrt.jar</systemPath -->
+			<systemPath>${env.JAVA_HOME}/jre/lib/jfxrt.jar</systemPath>
 		</dependency>
 	</dependencies>
 </project>

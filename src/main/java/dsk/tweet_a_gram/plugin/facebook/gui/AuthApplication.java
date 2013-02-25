@@ -54,8 +54,4 @@ public class AuthApplication extends Application {
 	public void setClassLoader(ClassLoader classLoader) {
 		this.classLoader = classLoader;
 	}
-
-	public static void main(String[] args) {
-		Application.launch();
-	}
 }

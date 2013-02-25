@@ -3,12 +3,16 @@ package dsk.tweet_a_gram.plugin.facebook.gui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Worker.State;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
@@ -18,7 +22,16 @@ import org.w3c.dom.NodeList;
 
 public class AuthController implements Initializable {
 	@FXML
+	private Label label;
+
+	@FXML
+	private Button ok;
+
+	@FXML
 	private WebView webView;
+
+	@FXML
+	private AnchorPane anchorPane;
 
 	private String accessToken;
 
@@ -26,8 +39,11 @@ public class AuthController implements Initializable {
 
 	private StageDelegate stageDelegate;
 
+	private ResizeDelegate resizeDelegate;
+
 	@Override
 	public void initialize(URL url, ResourceBundle bundle) {
+		this.webView.setVisible(false);
 		WebEngine engine = webView.getEngine();
 		engine.getLoadWorker().stateProperty().addListener(new ChangeListener<State>() {
 			@Override
@@ -52,8 +68,14 @@ public class AuthController implements Initializable {
 	}
 
 	@FXML
-	public void handleGo(ActionEvent event) {
-		webView.getEngine().load(this.authUrl);
+	public void handleOk(ActionEvent event) {
+		this.anchorPane.getChildren().remove(this.label);
+		this.anchorPane.getChildren().remove(this.ok);
+		this.webView.setVisible(true);
+		this.anchorPane.resize(800d, 600d);
+		this.webView.getEngine().load("http://yahoo.co.jp");
+		this.resizeDelegate.resize(800d, 600d);
+		// webView.getEngine().load(this.authUrl);
 	}
 
 	private static String getAccessToken(String url) {
@@ -82,5 +104,13 @@ public class AuthController implements Initializable {
 
 	public void setStageDelegate(StageDelegate stageDelegate) {
 		this.stageDelegate = stageDelegate;
+	}
+
+	public void setResizeDelegate(ResizeDelegate resizeDelegate) {
+		this.resizeDelegate = resizeDelegate;
+	}
+
+	public static void main(String[] args) {
+		Application.launch(AuthApplication.class);
 	}
 }

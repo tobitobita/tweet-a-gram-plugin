@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +45,8 @@ public class FacebookAuthorization extends JDialog implements AuthDelegate {
 			return;
 		}
 		// DISPOSEすると、JavaFXスレッドが終了してしまう
-		this.setBounds(100, 100, 450, 300);
+		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		this.setBounds(100, 100, 310, 110);
 		this.setModal(true);
 
 		final ClassLoader classLoader = getClass().getClassLoader();
@@ -65,6 +67,12 @@ public class FacebookAuthorization extends JDialog implements AuthDelegate {
 					@Override
 					public void hide() {
 						setVisible(false);
+					}
+				});
+				controller.setResizeDelegate(new ResizeDelegate() {
+					@Override
+					public void resize(double width, double height) {
+						setSize((int) width, (int) height);
 					}
 				});
 				return null;
