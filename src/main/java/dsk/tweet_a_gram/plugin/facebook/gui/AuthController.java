@@ -73,9 +73,8 @@ public class AuthController implements Initializable {
 		this.anchorPane.getChildren().remove(this.ok);
 		this.webView.setVisible(true);
 		this.anchorPane.resize(800d, 600d);
-		this.webView.getEngine().load("http://yahoo.co.jp");
 		this.resizeDelegate.resize(800d, 600d);
-		// webView.getEngine().load(this.authUrl);
+		this.webView.getEngine().load(this.authUrl);
 	}
 
 	private static String getAccessToken(String url) {
