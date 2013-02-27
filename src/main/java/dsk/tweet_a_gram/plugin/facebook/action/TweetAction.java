@@ -1,5 +1,7 @@
 package dsk.tweet_a_gram.plugin.facebook.action;
 
+import java.awt.Window;
+
 import javax.swing.JOptionPane;
 
 import org.slf4j.Logger;
@@ -29,6 +31,11 @@ public class TweetAction implements IPluginActionDelegate {
 
 	@Override
 	public Object run(IWindow window) throws UnExpectedException {
+		execute(window.getParent());
+		return null;
+	}
+
+	public static void execute(Window window) throws UnExpectedException {
 		LOG.trace("run");
 		Injector injector = Guice.createInjector(Stage.PRODUCTION, new FacebookModule(), new PluginModule());
 		TweetService<String> tweetService = injector.getInstance(Key.get(new TypeLiteral<TweetService<String>>() {
@@ -38,9 +45,9 @@ public class TweetAction implements IPluginActionDelegate {
 			injector.getInstance(ProjectAccessor.class).getProject();
 		} catch (ProjectNotFoundException e) {
 			LOG.error(e.getLocalizedMessage());
-			JOptionPane.showMessageDialog(window.getParent(), R.m("プロジェクトを開いていません。既存のプロジェクトを開くか、新しくプロジェクトを作成してください"),
-					"Warning", JOptionPane.WARNING_MESSAGE);
-			return null;
+			JOptionPane.showMessageDialog(window, R.m("プロジェクトを開いていません。既存のプロジェクトを開くか、新しくプロジェクトを作成してください"), "Warning",
+					JOptionPane.WARNING_MESSAGE);
+			return;
 		}
 		try {
 			tweetService.tweet();
@@ -49,12 +56,10 @@ public class TweetAction implements IPluginActionDelegate {
 				tweetService.getAuthService().deleteAccessToken();
 			}
 			LOG.warn(e.getMessage());
-			JOptionPane.showMessageDialog(window.getParent(), R.m("うまくつぶやけませんでした"), "Warning",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(window, R.m("うまくつぶやけませんでした"), "Warning", JOptionPane.ERROR_MESSAGE);
 		} catch (DskException e) {
 			LOG.warn(e.getMessage());
 			throw new UnExpectedException();
 		}
-		return null;
 	}
 }
