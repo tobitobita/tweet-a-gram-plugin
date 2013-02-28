@@ -44,6 +44,16 @@ public class TweetAction implements IPluginActionDelegate, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		try {
+			Class.forName("javafx.application.Application");
+		} catch (ClassNotFoundException e) {
+			LOG.error(e.getMessage(), e);
+			StringBuilder sb = new StringBuilder();
+			sb.append("JavaFXを使用します。\n");
+			sb.append("\"$JAVA_HOME/lib/jfxrt.jar\" を\"$インストールフォルダ/lib/\" へコピーし、再起動してください。");
+			JOptionPane.showMessageDialog(null, R.m(sb.toString()), "Error", JOptionPane.WARNING_MESSAGE);
+			return;
+		}
+		try {
 			JFrame frame = AstahAPI.getAstahAPI().getViewManager().getMainFrame();
 			execute(frame);
 		} catch (ClassNotFoundException | InvalidUsingException e) {
