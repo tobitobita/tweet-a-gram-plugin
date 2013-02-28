@@ -46,7 +46,7 @@ public class FacebookAuthorization extends JDialog implements AuthDelegate {
 		}
 		// DISPOSEすると、JavaFXスレッドが終了してしまう
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		this.setBounds(100, 100, 310, 110);
+		this.setBounds(100, 100, 310, 126);
 		this.setModal(true);
 
 		final ClassLoader classLoader = getClass().getClassLoader();

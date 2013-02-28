@@ -3,15 +3,22 @@ package dsk.tweet_a_gram.plugin.utils;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.Box;
-import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 
+import dsk.common.exception.DskRuntimeException;
+
 public final class AstahSwingTools {
+	// private static final Logger LOG = LoggerFactory.getLogger(AstahSwingTools.class);
+
 	private AstahSwingTools() {
 	}
 
@@ -32,8 +39,16 @@ public final class AstahSwingTools {
 		return toolBar;
 	}
 
-	public static JButton createAstahMenuButton(Icon icon, ActionListener actionListener) {
-		JButton button = new JButton(icon);
+	public static Image createImage(String path) {
+		try {
+			return ImageIO.read(AstahSwingTools.class.getClassLoader().getResource(path));
+		} catch (IOException e) {
+			throw new DskRuntimeException(e.getMessage());
+		}
+	}
+
+	public static JButton createAstahMenuButton(Image image, ActionListener actionListener) {
+		JButton button = new JButton(new ImageIcon(image));
 		button.setPreferredSize(new Dimension(26, 22));
 		button.setRequestFocusEnabled(false);
 		button.setFocusable(false);
