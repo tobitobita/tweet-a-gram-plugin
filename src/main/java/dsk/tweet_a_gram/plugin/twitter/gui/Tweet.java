@@ -58,7 +58,7 @@ public class Tweet extends JDialog implements TweetDelegate {
 	public Tweet() {
 		setModal(true);
 		setResizable(false);
-		setTitle(R.m(MESSAGE, "あすったー") + " (Facebook)");
+		setTitle(R.m(MESSAGE, "あすったー") + " (Twitter)");
 		setIconImage(AstahSwingTools.createImage(TWITTER_ICON));
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 500);
