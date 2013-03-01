@@ -48,9 +48,10 @@ public class TweetAction implements IPluginActionDelegate, ActionListener {
 		} catch (ClassNotFoundException e) {
 			LOG.error(e.getMessage(), e);
 			StringBuilder sb = new StringBuilder();
-			sb.append("JavaFXを使用します。\n");
-			sb.append("\"$JAVA_HOME/lib/jfxrt.jar\" を\"$インストールフォルダ/lib/\" へコピーし、再起動してください。");
-			JOptionPane.showMessageDialog(null, R.m(sb.toString()), "Error", JOptionPane.WARNING_MESSAGE);
+			sb.append(R.m("JavaFXを使用します。"));
+			sb.append("\n");
+			sb.append(R.m("\"$JAVA_HOME/lib/jfxrt.jar\"を\"$インストールフォルダ/lib/\"へコピーし、再起動してください。"));
+			JOptionPane.showMessageDialog(null, sb.toString(), "Error", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
 		try {

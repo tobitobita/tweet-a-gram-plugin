@@ -2,6 +2,7 @@ package dsk.tweet_a_gram.plugin.facebook.gui;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ResourceBundle;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +30,7 @@ public class AuthApplication extends Application {
 		}
 		FXMLLoader loader = new FXMLLoader();
 		loader.setClassLoader(theClassLoader);
+		loader.setResources(ResourceBundle.getBundle("fx_message"));
 		InputStream is = null;
 		try {
 			is = theClassLoader.getResource("dsk/tweet_a_gram/plugin/facebook/gui/auth.fxml").openConnection()
