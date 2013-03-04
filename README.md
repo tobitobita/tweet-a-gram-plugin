@@ -3,7 +3,11 @@ Tweet-a-gram plugin (あすったー)
 
 Version
 ------------
-1.0.2  
+1.1.3  
+
+Release Note
+------------
+[Here.](release_note.md)  
 
 Available for
 ------------
