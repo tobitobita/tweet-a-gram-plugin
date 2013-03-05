@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
+import org.apache.commons.lang3.StringUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -58,7 +59,8 @@ public class AuthController implements Initializable {
 					return;
 				}
 				Node body = nodeList.item(0);
-				if (!"Success".equals(body.getTextContent())) {
+				String content = body.getTextContent();
+				if (!StringUtils.isEmpty(content) && !content.startsWith("Success")) {
 					return;
 				}
 				accessToken = getAccessToken(engine.getLocation().toString());
