@@ -240,7 +240,7 @@
 											maven-dependency-plugin
 										</artifactId>
 										<versionRange>
-											[2.4,)
+											2.6
 										</versionRange>
 										<goals>
 											<goal>copy-dependencies</goal>
