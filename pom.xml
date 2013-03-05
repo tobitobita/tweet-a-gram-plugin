@@ -311,6 +311,7 @@
 			<version>2.2.5</version>
 			<scope>system</scope>
 			<systemPath>${env.JAVA_HOME}/jre/lib/jfxrt.jar</systemPath>
+			<optional>true</optional>
 		</dependency>
 	</dependencies>
 </project>
