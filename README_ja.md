@@ -1,28 +1,23 @@
 Tweet-a-gram plugin 2.0 (あすったー)
 ===============================================
 [README.md](README.md) English
----
 
 最新バージョン
 ------------
 [2.0.3](https://s3.amazonaws.com/astah_plugins/tweet-a-gram-plugin-2.0.3.jar)
----
 
 リリースノート（English）
 ------------
 [こちら](release_note.md)  
----
 
 実行可能なastah*バージョン
 ------------
 astah* community, UML, professional 6.7以上。(astah* think 3.1でも動作確認済み)  
 astah* community, UML, professional 6.6.4までの方は、[Tweet-a-gram plugin 1.1](https://s3.amazonaws.com/astah_plugins/tweet-a-gram-plugin-1.1.3.jar)を使用してください。
----
 
 プラグインの説明
 ------------
 このプラグインは、astah*で作成した図をtwitter、もしくは、facebookに投稿するプラグインです。  
----
 
 インストール方法
 ----
@@ -32,7 +27,6 @@ astah* community, UML, professional 6.6.4までの方は、[Tweet-a-gram plugin 
 ![install_01](images/install01.png) 
 3. メニューより、[ヘルプ] - [プラグイン一覧...] を実行し、状態にチェックが付いていることを確認してください。  
 ![install_01](images/install02.png)  
----
 
 使い方
 ----
