@@ -4,7 +4,7 @@ Tweet-a-gram plugin 2.0 (あすったー)
 
 Lasted version
 ------------
-[2.0.4](https://s3.amazonaws.com/astah_plugins/tweet-a-gram-plugin-2.0.3.jar)
+[2.0.3](https://s3.amazonaws.com/astah_plugins/tweet-a-gram-plugin-2.0.3.jar)
 
 Release Note
 ------------
@@ -21,7 +21,7 @@ This plug-in links to your twitter and facebook account and enables you to tweet
 
 How to install
 ------------
-0. [Download](https://s3.amazonaws.com/astah_plugins/tweet-a-gram-plugin-2.0.4.jar "Download") the jar file.  
+0. [Download](https://s3.amazonaws.com/astah_plugins/tweet-a-gram-plugin-2.0.3.jar "Download") the jar file.  
 1. Deploy the jar file in the "plugins" folder under the Astah Installation folder  
 2. Launch Astah  
 3. You find that the [Tweet-a-gram] menu is added under the [Tool] menu  

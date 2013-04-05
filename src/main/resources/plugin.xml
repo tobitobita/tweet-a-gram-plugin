@@ -21,7 +21,7 @@
                path="tool/testplugin/facebook">
          </menu>
          <action
-			   label="%menu_label"
+			   label="%menu_label_twitter"
                class="dsk.tweet_a_gram.plugin.twitter.action.TweetAction"
                menubarPath="tool/testplugin/twitter/"
                id="tweet-a-gram-plugin-twitter-tweet">
@@ -33,7 +33,7 @@
                id="tweet-a-gram-plugin-twitter-logout">
          </action>
          <action
-			   label="%menu_label"
+			   label="%menu_label_facebook"
                class="dsk.tweet_a_gram.plugin.facebook.action.TweetAction"
                menubarPath="tool/testplugin/facebook/"
                id="tweet-a-gram-plugin-facebook-tweet">

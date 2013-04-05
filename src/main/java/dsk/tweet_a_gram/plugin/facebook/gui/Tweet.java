@@ -68,7 +68,7 @@ public class Tweet extends JDialog implements TweetDelegate {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btnNewButton = new JButton(R.m(MESSAGE, "つぶやく"));
+		JButton btnNewButton = new JButton(R.m(MESSAGE, "投稿する"));
 		btnNewButton.setBounds(166, 108, 117, 29);
 		btnNewButton.addActionListener(new AbstractAction() {
 			private static final long serialVersionUID = -3796215656017723061L;
